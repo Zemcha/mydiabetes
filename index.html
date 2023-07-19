@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <style>
         body {
             background-color: black;
@@ -15,27 +15,116 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
+
         img {
             max-width: 90%;
             height: auto;
         }
+
         iframe {
             width: 90%;
             height: 50vh;
         }
+
         @media (min-width: 600px) {
             img {
                 max-width: 600px;
             }
+
             iframe {
                 width: 600px;
                 height: 337px;
             }
         }
+
+        @keyframes pulsing {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+        @keyframes pulsing {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #refreshText {
+            animation: pulsing 2s infinite;
+        }
+
+        #player {
+            width: 100%;
+            max-width: 800px;
+            height: calc(800px * 9 / 16);
+        }
+
+        #player {
+            border-radius: 20px;
+        }
     </style>
+    <link href="https://cdn.plyr.io/3.6.8/plyr.css" rel="stylesheet" />
 </head>
+
 <body>
-    <img src="WeAreBack.gif" alt="We Are Back">
-    <iframe src="https://player.vimeo.com/video/264979777?autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <img alt="We Are Back" src="WeAreBack.gif" />
+    <video controls="" id="player" playsinline="">
+        <source id="randomVideoSource" src="" type="video/mp4" />
+    </video>
+    <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+    <script>
+        var videoUrls = [
+            "media/1_sml1.mp4", 
+            "media/2_sml1.mp4", 
+            "media/3_sml1.mp4", 
+            "media/4_sml1.mp4", 
+            "media/5_sml1.mp4", 
+            "media/6_sml1.mp4", 
+            "media/7_sml1.mp4", 
+            "media/8_sml1.mp4", 
+            "media/9_sml1.mp4", 
+            "media/10_sml1.mp4", 
+            "media/11_sml1.mp4", 
+            "media/12_sml1.mp4", 
+            "media/13_sml1.mp4", 
+            "media/14_sml1.mp4", 
+            "media/15_sml1.mp4", 
+            "media/16_sml1.mp4", 
+            "media/17_sml1.mp4", 
+            "media/18_sml1.mp4", 
+            "media/19_sml1.mp4", 
+            "media/20_sml1.mp4", 
+            "media/21_sml1.mp4", 
+            "media/22_sml1.mp4"];
+        var randomVideoUrl = videoUrls[Math.floor(Math.random() * videoUrls.length)];
+        document.getElementById("randomVideoSource").src = randomVideoUrl;
+        const player = new Plyr('#player', { autoplay: true });
+    </script>
+    <div id="refreshDiv" style="display: none;">
+        <a onClick="window.location.reload();" style="cursor: pointer;"><p id="refreshText">REFRESH FOR MORE</p></a>
+    </div>
+    <script>
+        setTimeout(function () {
+            document.getElementById("refreshDiv").style.display = "block";
+        }, 5000);
+    </script>
 </body>
+
 </html>
